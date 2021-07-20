@@ -27,12 +27,11 @@ passport.use(
             let user;
             if (results && results[0]) {
                 user = JSON.parse(JSON.stringify(results[0]));
-            }  
+            }
             // Check if there is data in the inforamtions transmitted by the user
             if (!user || !user.pseudo || !user.password) {
                 return done(null, false, { message: "Incorrect password or pseudo!" });
             }
-                
             // Compare the password from the form filled by the user in the front to the encrypted password in the database
             bcrypt.compare(formPassword, user.password, (errBcrypt, result) => {
                 if (errBcrypt) return done(errBcrypt);

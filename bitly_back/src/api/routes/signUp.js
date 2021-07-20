@@ -20,7 +20,6 @@ router.post("/", (req, res, next) => {
         if (err) {
             console.log(newUser)
           return res.status(400).send(err.sqlMessage);
-          
         } else {
             newUser.password = undefined;
             newUser.idUser = results.insertId
@@ -28,7 +27,7 @@ router.post("/", (req, res, next) => {
                 User: newUser,
                 token: jwt.sign(JSON.stringify(newUser), jwtSecret)
                 });
-            }  
+            }
         });
     });
   });
